@@ -24,7 +24,6 @@ public:
 	bool isEnd();
 	bool isStart();
 };
-
 template <class T>
 DListIterator<T>::DListIterator(DList<T>* l, DListNode<T>* n)
 {
