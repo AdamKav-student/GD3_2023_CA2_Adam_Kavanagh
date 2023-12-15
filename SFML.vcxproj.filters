@@ -38,5 +38,11 @@
     <ClInclude Include="DListNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

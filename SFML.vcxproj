@@ -141,6 +141,8 @@
     <ClInclude Include="DList.h" />
     <ClInclude Include="DListIterator.h" />
     <ClInclude Include="DListNode.h" />
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeIterator.h" />
   </ItemGroup>

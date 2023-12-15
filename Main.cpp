@@ -1,4 +1,5 @@
-#include <SFML/Graphics.hpp>
+#/*include <SFML/Graphics.hpp>
+#include "Main.h"
 using namespace std;
 
 int main()
@@ -22,30 +23,6 @@ int main()
 }
 
 
-void fileToString(string fname, string data)
-{
-    //load file
-    ifstream fin{};(fname);
-
-    //check if file is open
-    if (fin)
-    {
-        //read file into string
-        string line;
-        //while there is a line to read
-        while (getline(fin, line))
-        {
-            //add line to data
-            data += line + "\n";
-        }
-        fin.close();
-    }
-    //if file is not open
-    else
-    {
-        cout << "Error opening file" << endl;
-    }
-}
 int main()
 {
     string file;
@@ -53,3 +30,4 @@ int main()
 
     return 1;
 }
+*/
