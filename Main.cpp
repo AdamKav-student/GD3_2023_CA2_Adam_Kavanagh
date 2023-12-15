@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+using namespace std;
 
 int main()
 {
@@ -20,11 +21,11 @@ int main()
 	return 0;
 }
 
-/*
+
 void fileToString(string fname, string data)
 {
     //load file
-    ifstream fin(fname);
+    ifstream fin{};(fname);
 
     //check if file is open
     if (fin)
@@ -52,4 +53,3 @@ int main()
 
     return 1;
 }
-*/

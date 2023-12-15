@@ -1,7 +1,3 @@
-//template <class T> class DList;
-//template <class T> class DListIterator;
-
-
 #pragma once
 
 #include "DList.h"

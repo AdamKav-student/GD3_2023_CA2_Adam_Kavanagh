@@ -1,6 +1,7 @@
 template <class T> class DList;
 template <class T> class DListIterator;
 #pragma once
+
 #include "DListNode.h"
 #include "DListIterator.h"
 
@@ -169,7 +170,7 @@ DListIterator<T> DList<T>::remove(DListIterator<T> &iter)
 	}
 	else
 	{
-		*DListIterator<T> previousNodeIter(this, iter.currentNode->previous);
+		DListIterator<T> previousNodeIter(this, iter.currentNode->previous);
 	
 		if (iter.currentNode == tail)
 		{
@@ -179,7 +180,7 @@ DListIterator<T> DList<T>::remove(DListIterator<T> &iter)
 		if (iter.currentNode->next != nullptr)
 		{
 			iter.currentNode->next->previous = previousNodeIter.currentNode;
-		}*/
+		}
 
 		DListNode<T>*prev = iter.currentNode->previous;
 		if (iter.currentNode == tail)
@@ -201,14 +202,14 @@ DListIterator<T> DList<T>::remove(DListIterator<T> &iter)
 template <class T>
 DList<T>::~DList()
 {
-	DListNode<T> *iter, *next=nullptr;
+	DListNode<T>* iter, * next = nullptr;
 	iter = head;
-	while(iter != nullptr )
+	while (iter != nullptr)
 	{
 		next = iter->next;
 		delete iter;
 		iter = next;
-		
+
 	}
 	head = nullptr;
 	tail = nullptr;
