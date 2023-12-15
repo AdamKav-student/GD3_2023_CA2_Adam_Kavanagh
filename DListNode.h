@@ -15,8 +15,8 @@ public:
 
 	~DListNode()
 	{
-		//next = nullptr;
-		//previous = nullptr;
+		next = nullptr;
+		previous = nullptr;
 	}
 };
 

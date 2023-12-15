@@ -1,83 +1,180 @@
-//template <class T> class DList;
-//template <class T> class DListIterator;
-
-
 #pragma once
 
-#include "DList.h"
-#include "DListNode.h"
-
 template <class T>
-class DListIterator
+class TreeIterator
 {
 public:
-	DListNode<T>* currentNode;
-	DList<T>* list;
+	Tree<T>* node;
+	DListIterator<Tree<T>*> childIter;
 
-	DListIterator(DList<T>* l = nullptr, DListNode<T>* node = nullptr);
-	void start();
-	void end();
-	void advance();
-	void previous();
+	TreeIterator(Tree<T>* root);
+	void resetIterator();
+	void root();
+	void up();
+	void down();
+	void childBack();
+	void childForth();
+	void childStart();
+	void childEnd();
+	void appendChild(T item);
+	void prependChild(T item);
+	void insertChildBefore(T item);
+	void insertChildAfter(T item);
+	void removeChild();
+	bool childValid();
+	T childItem();
 	T item();
-	bool isValid();
-	bool isEnd();
-	bool isStart();
 };
-
 template <class T>
-DListIterator<T>::DListIterator(DList<T>* l, DListNode<T>* n)
+TreeIterator<T>::TreeIterator(Tree<T>* root)
 {
-	list = l;
-	currentNode = n;
+	node = root;
+	resetIterator();
 }
 
 template <class T>
-void DListIterator<T>::start()
+void TreeIterator<T>::resetIterator()
 {
-	currentNode = list->head;
+	if (node != nullptr)
+	{
+		childIter = node->children->getIterator();
+	}
+	else
+	{
+		childIter = nullptr;
+	}
 }
 
 template <class T>
-void DListIterator<T>::end()
+void TreeIterator<T>::root()
 {
-	currentNode = list->tail;
-}
-template <class T>
-void DListIterator<T>::advance()
-{
-	if (currentNode == nullptr)
-		return;
-	currentNode = currentNode->next;
+	if (node->parent != nullptr)
+	{
+		node = node->parent;
+		root();
+	}
+	resetIterator();
 }
 
 template <class T>
-void DListIterator<T>::previous()
+void TreeIterator<T>::up()
 {
-	if (currentNode == nullptr)
-		return;
-	currentNode = currentNode->previous;
-}
-template <class T>
-T DListIterator<T>::item()
-{
-	return currentNode->data;
+	if (node->parent != nullptr)
+	{
+		node = node->parent;
+
+	}
+	resetIterator();
 }
 
 template <class T>
-bool DListIterator<T>::isValid()
+void TreeIterator<T>::down()
 {
-	return currentNode != nullptr;
+	if (childIter.isValid())
+	{
+		node = childIter.item();
+
+	}
+	resetIterator();
 }
 
 template <class T>
-bool DListIterator<T>::isEnd()
+void TreeIterator<T>::childBack()
 {
-	return currentNode == list->tail;
+	if (childIter.isValid())
+	{
+		childIter.previous();
+	}
 }
 
 template <class T>
-bool DListIterator<T>::isStart()
+void TreeIterator<T>::childForth()
 {
-	return currentNode == list->head;
+	if (childIter.isValid())
+	{
+		childIter.advance();
+	}
+}
+
+template <class T>
+void TreeIterator<T>::childStart()
+{
+	if (childIter.isValid())
+	{
+		childIter.start();
+}
+}
+
+template <class T>
+void TreeIterator<T>::childEnd()
+{
+	if (childIter.isValid())
+	{
+		childIter.end();
+}
+}
+
+template <class T>
+void TreeIterator<T>::appendChild(T item)
+{
+	Tree<T>* temp = new Tree<T>(item);
+	temp->parent = node;
+	node->children->append(temp);
+	resetIterator();
+}
+
+template <class T>
+void TreeIterator<T>::prependChild(T item)
+{
+	Tree<T>* temp = new Tree<T>(item);
+	temp->parent = node;
+	node->children->prepend(temp);
+	resetIterator();
+}
+
+template <class T>
+void TreeIterator<T>::insertChildBefore(T item)
+{
+	Tree<T>* temp = new Tree<T>(item);
+	temp->parent = node;
+	node->children->insert(childIter, temp);
+
+}
+
+template <class T>
+void TreeIterator<T>::insertChildAfter(T item)
+{
+
+	Tree<T>* temp = new Tree<T>(item);
+	temp->parent = node;
+	childIter.advance();
+	node->children->insert(childIter, temp);
+	childIter.previous();
+	childIter.previous();
+
+}
+
+template <class T>
+void TreeIterator<T>::removeChild()
+{
+	childIter = node->children->remove(childIter);
+
+}
+
+template <class T>
+bool TreeIterator<T>::childValid()
+{
+	return childIter.isValid();
+}
+
+template <class T>
+T TreeIterator<T>::childItem()
+{
+	return childIter->node->data;
+}
+
+template <class T>
+T TreeIterator<T>::item()
+{
+	return node->data;
 }

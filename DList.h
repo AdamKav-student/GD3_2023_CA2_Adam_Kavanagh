@@ -169,7 +169,7 @@ DListIterator<T> DList<T>::remove(DListIterator<T> &iter)
 	}
 	else
 	{
-		/*DListIterator<T> previousNodeIter(this, iter.currentNode->previous);
+		*DListIterator<T> previousNodeIter(this, iter.currentNode->previous);
 	
 		if (iter.currentNode == tail)
 		{
